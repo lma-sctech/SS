@@ -3,9 +3,14 @@ import Link from "next/link";
 import { siteConfig } from "@/data/site";
 
 export function Footer() {
+  const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.region} ${siteConfig.address.postalCode}`;
+  const mapQuery = encodeURIComponent(`${siteConfig.name}, ${addressLine}`);
+  const mapSrc = `https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`;
+  const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
   return (
     <footer className="border-t border-[#253150] bg-[#121B35] text-white shadow-[0_-18px_70px_rgba(18,27,53,0.28)]">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_22rem] lg:px-8">
         <div>
           <Link href="/" className="focus-ring relative inline-flex h-16 w-full max-w-[28rem] overflow-visible rounded-md" aria-label={`${siteConfig.name} home`}>
             <span className="absolute left-0 top-1/2 block h-40 w-full -translate-y-1/2 overflow-visible">
@@ -25,9 +30,21 @@ export function Footer() {
         </div>
 
         <div className="lg:text-right">
-          <div className="text-sm leading-6 text-white/78">
-            <p>{siteConfig.address.street}, {siteConfig.address.city}, {siteConfig.address.region}</p>
+          <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 shadow-[0_18px_55px_rgba(0,0,0,0.18)]">
+            <iframe
+              title="Sanaa Services location on Google Maps"
+              src={mapSrc}
+              className="h-44 w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="mt-3 text-sm leading-6 text-white/78">
+            <p>{addressLine}</p>
             <p>{siteConfig.hours}</p>
+            <a className="focus-ring rounded-sm font-semibold text-champagne hover:text-white" href={mapLink} target="_blank" rel="noreferrer">
+              Open in Google Maps
+            </a>
           </div>
         </div>
       </div>
