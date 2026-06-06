@@ -1,0 +1,28 @@
+import { CardSurface } from "@/components/ui/CardSurface";
+import type { Testimonial } from "@/data/testimonials";
+
+export function ReviewCard({ name, location, quote, service, rating = 5, sourceLabel, sourceUrl }: Testimonial) {
+  return (
+    <CardSurface as="article" glow className="p-6">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-sm font-bold text-champagne">{service}</p>
+        <p className="text-sm font-bold text-navy" aria-label={`${rating} out of 5 stars`}>
+          {"★".repeat(Math.round(rating))}
+        </p>
+      </div>
+      <blockquote className="mt-4 text-base leading-7 text-navy">&ldquo;{quote}&rdquo;</blockquote>
+      <p className="mt-5 font-bold text-navy">{name}</p>
+      <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate">
+        <span>{location}</span>
+        {sourceLabel && sourceUrl ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <a className="focus-ring rounded-sm font-semibold text-navy hover:text-champagne" href={sourceUrl} target="_blank" rel="noreferrer">
+              {sourceLabel}
+            </a>
+          </>
+        ) : null}
+      </div>
+    </CardSurface>
+  );
+}
