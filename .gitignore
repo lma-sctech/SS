@@ -34,6 +34,7 @@ Thumbs.db
 # Local caches
 .turbo/
 .vercel/
+.local-preview/
 
 # Local source media archive kept out of GitHub Pages and Git history
 assets/source/

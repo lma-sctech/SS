@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { publicAsset } from "@/lib/assets";
 
 type HeroVideoProps = {
-  poster: string;
-  mobilePoster: string;
   video: string;
 };
 
@@ -19,7 +17,7 @@ function shouldAvoidVideo() {
   );
 }
 
-export function HeroVideo({ poster, mobilePoster, video }: HeroVideoProps) {
+export function HeroVideo({ video }: HeroVideoProps) {
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
 
@@ -35,16 +33,10 @@ export function HeroVideo({ poster, mobilePoster, video }: HeroVideoProps) {
 
   return (
     <div className="absolute inset-0">
-      <picture>
-        <source media="(max-width: 767px)" srcSet={publicAsset(mobilePoster)} />
-        <img
-          src={publicAsset(poster)}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-          decoding="async"
-          aria-hidden="true"
-        />
-      </picture>
+      <div
+        className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,18,47,1)_0%,rgba(11,31,72,1)_48%,rgba(8,15,31,1)_100%)]"
+        aria-hidden="true"
+      />
       {videoSrc ? (
         <video
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${isReady ? "opacity-100" : "opacity-0"}`}

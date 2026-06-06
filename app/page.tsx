@@ -38,11 +38,7 @@ export default async function HomePage() {
   return (
     <>
       <section className="relative -mt-[var(--site-header-height)] min-h-[86vh] overflow-hidden bg-navy text-white">
-        <HeroVideo
-          poster="/img/optimized/hero/travel-hero-poster-1600.jpg"
-          mobilePoster="/img/optimized/hero/travel-hero-poster-900.jpg"
-          video="/vid/hero-vid1.mp4"
-        />
+        <HeroVideo video="/vid/hero-vid1.mp4" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/72 to-navy/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(214,184,124,0.34),transparent_34rem)]" />
         <div className="relative z-10 mx-auto flex min-h-[86vh] max-w-7xl flex-col items-center justify-end px-4 pb-10 pt-24 text-center sm:px-6 lg:px-8">
